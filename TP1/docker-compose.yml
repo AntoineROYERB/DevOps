@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+    backend: 
+        container_name: back
+        build: ./BACK/simple-api-student-main
+        networks:
+            - app-network  # Associe ce service au réseau "app-network"
+        depends_on:
+            - database  # Attend que le service "database" soit prêt avant de démarrer
+
+    database:
+        container_name: db
+        build: .
+        networks:
+            - app-network  # Associe ce service au réseau "app-network"
+
+    httpd:
+        container_name: front
+
+        build: ./FRONT
+        ports:
+            - "80:80"  # Fait correspondre le port 80 du conteneur HTTPD au port 80 de l'hôte
+        networks:
+            - app-network  # Associe ce service au réseau "app-network"
+        depends_on:
+            - backend  # Attend que le service "backend" soit prêt avant de démarrer
+
+networks:
+    app-network:  # Définit un réseau nommé "app-network" pour la communication entre les services
