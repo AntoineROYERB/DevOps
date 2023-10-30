@@ -52,7 +52,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           # relative path to the place where source code with Dockerfile is located
-          context: TP2/simple-api
+          context: ./TP2/simple-api
           # Note: tags has to be all lower-case
           tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops/simple-api
           push: ${{ github.ref == 'refs/heads/main' }}
@@ -62,7 +62,7 @@ jobs:
         # DO the same for database
         uses: docker/build-push-action@v3  # Use the same action for the database
         with:
-         context: TP2/database  # Relative path to the database component
+         context: ./TP2/database  # Relative path to the database component
          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops/database  # Set the Docker image name and tag for the database
          push: ${{ github.ref == 'refs/heads/main' }}
 
@@ -71,7 +71,7 @@ jobs:
         # DO the same for httpd
         uses: docker/build-push-action@v3  # Use the same action for httpd
         with:
-          context: TP2/httpd-server  # Relative path to the httpd component
+          context: ./TP2/httpd-server  # Relative path to the httpd component
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops/httpd  # Set the Docker image name and tag for httpd
           push: ${{ github.ref == 'refs/heads/main' }}
 
