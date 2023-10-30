@@ -24,3 +24,5 @@ jobs:
 
       - name: Build and test with Maven
         run: mvn clean verify  # Replace with your actual build and test command
+        working-directory: TP2/simple-api/pom.xml
+
