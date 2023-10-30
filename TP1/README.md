@@ -119,7 +119,7 @@ $ docker tag tp1 royerbantoine/tp1:1.0
 $ docker push royerbantoine/tp1:1.0
 ```
 
-# Réponses aux questions
+# Answers to questions
 1-0 Why should we run the container with a flag -e to give the environment variables?
 Using the -e flag when running allows you to configure your container's behavior using environment variables, providing a flexible and secure way to manage your application's settings.
 

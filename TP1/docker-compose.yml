@@ -14,10 +14,11 @@ services:
         build: .
         networks:
             - app-network  # Associe ce service au réseau "app-network"
-
+        volumes:
+            - db-volume:/var/lib/postgresql/data # Montre le volume "db-volume" dans le conteneur PostgreSQL
+            
     httpd:
         container_name: front
-
         build: ./FRONT
         ports:
             - "80:80"  # Fait correspondre le port 80 du conteneur HTTPD au port 80 de l'hôte
@@ -25,6 +26,9 @@ services:
             - app-network  # Associe ce service au réseau "app-network"
         depends_on:
             - backend  # Attend que le service "backend" soit prêt avant de démarrer
+
+volumes:
+    db-volume:
 
 networks:
     app-network:  # Définit un réseau nommé "app-network" pour la communication entre les services
