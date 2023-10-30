@@ -30,3 +30,8 @@ Why did we put needs: build-and-test-backend on this job? Maybe try without this
 
 For what purpose do we need to push docker images?
 
+NOTE:
+
+pour commit sans rien modifier pour relancer les tests:
+git commit --amend --no-edit
+git push -f
