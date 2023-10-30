@@ -19,6 +19,8 @@ jobs:
         uses: actions/setup-java@v3  # Use the appropriate version of actions/setup-java
         with:
           java-version: 17  # Specify the JDK version you want to use
+          distribution: 'adopt'  # Specify the distribution (e.g., 'adopt', 'adopt-lts', etc.)
+
 
       - name: Build and test with Maven
         run: mvn clean verify  # Replace with your actual build and test command
