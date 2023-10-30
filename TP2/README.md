@@ -25,3 +25,8 @@ They simply are java libraries that allow you to run a bunch of docker container
 2-2 Document your Github Actions configurations.
 
 See .github/workflows/main.yml comments
+
+Why did we put needs: build-and-test-backend on this job? Maybe try without this and you will see!
+
+For what purpose do we need to push docker images?
+
