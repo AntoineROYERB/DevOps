@@ -20,4 +20,8 @@ What is it supposed to do?
 
 2-1 What are testcontainers?
 
-They simply are java libraries that allow you to run a bunch of docker containers while testing. Here we use the postgresql container to attach to our application while testing. If you run the command mvn clean verify you’ll be able to see the following:
+They simply are java libraries that allow you to run a bunch of docker containers while testing. Here we use the postgresql container to attach to our application while testing.
+
+2-2 Document your Github Actions configurations.
+
+See .github/workflows/main.yml comments
