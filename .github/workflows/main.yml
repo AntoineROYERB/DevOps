@@ -71,7 +71,7 @@ jobs:
         # DO the same for httpd
         uses: docker/build-push-action@v3  # Use the same action for httpd
         with:
-          context: ../TP2/httpd-server  # Relative path to the httpd component
+          context: ../TP2/http-server  # Relative path to the http component
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops/httpd  # Set the Docker image name and tag for httpd
           push: ${{ github.ref == 'refs/heads/main' }}
 
