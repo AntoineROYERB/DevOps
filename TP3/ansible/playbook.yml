@@ -1,0 +1,9 @@
+- hosts: all
+  become: true
+  roles:
+    - docker
+    - network
+    - database
+    - app
+    - proxy
+    - front

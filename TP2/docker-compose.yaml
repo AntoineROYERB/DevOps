@@ -4,6 +4,8 @@ services:
   backend:
     build: ./simple-api
     container_name: my-api
+    ports:
+      - "8080:8080"
     networks:
       - my-network
     depends_on:
@@ -20,9 +22,19 @@ services:
   httpd:
     build: ./http-server
     ports:
-      - "80:80"
+      - "8082:80"
     networks:
       - my-network
+    depends_on:
+      - front
+
+  front:
+    build: ./devops-front
+    container_name: my-front
+    networks:
+      - my-network
+    ports:
+      - "8083:80"
     depends_on:
       - backend
 

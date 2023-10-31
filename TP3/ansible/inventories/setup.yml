@@ -1,0 +1,11 @@
+# Fichier de configuration Ansible (all.yml)
+all:
+  # Variables globales pour tous les groupes d'hôtes
+  vars:
+    ansible_user: centos                                # Utilisateur SSH pour se connecter aux hôtes
+    ansible_ssh_private_key_file: /home/antoine/Documents/EPF MIN/DevOps/TP3/id_rsa  # Chemin de la clé SSH privée à utiliser pour les connexions
+
+  # Définition des groupes d'hôtes et de leurs membres
+  children:
+    prod:                                         # Groupe d'hôtes nommé "prod"
+      hosts: antoine.royer--bournelle.takima.cloud # Liste des hôtes appartenant au groupe "prod"

@@ -1,0 +1,7 @@
+- name: Pull the "royerbantoine/tp-devops-database" image
+  docker_container:
+    name: my-db
+    image: royerbantoine/tp-devops-database:1.0
+    pull: true
+    networks:
+      - name: app-network

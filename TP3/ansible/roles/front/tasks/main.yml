@@ -1,0 +1,10 @@
+- name: Run the proxy container
+  docker_container:
+    name: httpd
+    image: royerbantoine/tp-devops-httpd:1.0
+    recreate: true
+    pull: true
+    ports:
+      - "80:80"
+    networks:
+      - name: app-network
