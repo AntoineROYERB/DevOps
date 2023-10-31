@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import DepartmentList from './DepartmentList.vue';
+import DepartmentList from './DepartmentList';
 
 export default {
   name: 'HelloWorld',

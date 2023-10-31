@@ -1,10 +1,10 @@
-- name: Run the proxy container
+- name: Run the front container
   docker_container:
     name: httpd
-    image: royerbantoine/tp-devops-httpd:1.0
+    image: royerbantoine/tp-devops-front:1.0
     recreate: true
     pull: true
     ports:
-      - "80:80"
+      - "8083:80"
     networks:
       - name: app-network

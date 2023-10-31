@@ -2,8 +2,8 @@ FROM node:12.16.3-stretch-slim AS build
 
 WORKDIR /opt/front
 
-COPY src src/
-COPY public public/
+COPY src/ src/
+COPY public/ public/
 COPY package.json .
 COPY yarn.lock .
 COPY default.conf .
