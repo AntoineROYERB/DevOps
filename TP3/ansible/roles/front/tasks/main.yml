@@ -1,6 +1,6 @@
 - name: Run the front container
   docker_container:
-    name: httpd
+    name: front
     image: royerbantoine/tp-devops-front:1.0
     recreate: true
     pull: true

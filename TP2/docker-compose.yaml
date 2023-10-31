@@ -30,7 +30,7 @@ services:
 
   front:
     build: ./devops-front
-    container_name: my-front
+    container_name: front
     networks:
       - my-network
     ports:
