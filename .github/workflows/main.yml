@@ -76,3 +76,9 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-httpd:1.0  # Set the Docker image name and tag for httpd
           push: ${{ github.ref == 'refs/heads/main' }}
 
+      - name: Build image and push front
+        uses: docker/build-push-action@v3
+        with:
+          context: TP2/devops-front
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-front:1.0  # Set the Docker image name and tag for httpd
+          push: ${{ github.ref == 'refs/heads/main' }}
