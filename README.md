@@ -1,5 +1,5 @@
 # DevOps
-
+![alt text](Course/devops.png)
 
 This repository is dedicated to showcasing the work carried out during the DevOps course conducted by the company Takima in collaboration with EPF (École Polytechnique Féminine). In this introduction, we will briefly explore the concept of DevOps and provide links to the various README.md files present in this repository.
 
