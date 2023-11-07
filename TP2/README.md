@@ -1,6 +1,4 @@
-# TP2
-
-Link to TP2: [TP2](http://school.pages.takima.io/devops-resources/ch2-discover-github-actions-tp/)
+# [TP2 - Github Actions](http://school.pages.takima.io/devops-resources/ch2-discover-github-actions-tp/)
 
 Maven is a build automation and project management tool used primarily for Java projects. It simplifies the build process by managing project dependencies, compiling source code, running tests, and packaging applications. Maven uses a standardized project structure and relies on a Project Object Model (POM) file to define project configurations. It streamlines the development workflow and automates tasks such as building, testing, and packaging, making it easier for developers to manage and build complex Java applications.
 ```

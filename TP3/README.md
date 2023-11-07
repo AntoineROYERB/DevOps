@@ -1,94 +1,97 @@
-# Discover Ansible
+# [TP3 - Ansible](http://school.pages.takima.io/devops-resources/ch3-discover-ansible-tp/)
 
-Till now we have only been preparing our applications to be deployed. However we did not deploy anything.
 
-That’s where Ansible takes place. Ansible is basically a tool to manage your servers, provision them and deploy your applications on them.
+Up until now, we have primarily focused on preparing our applications for deployment, but we haven't yet deployed anything.
 
-This is not the only solution on the market, you’ll hear also about Chef, Puppet, Terraform during your developper life.
+This is where Ansible comes into play. Ansible is a powerful tool for managing servers, provisioning them, and deploying applications.
 
-installation
-```agsl
-$ python3 -m pip install --user ansible
-$ ansible --version
-```
+It's worth noting that Ansible is not the only solution available in the market. Throughout your developer journey, you'll also encounter other tools like Chef, Puppet, and Terraform.
+
+## Installation
+
+```shell
+python3 -m pip install --user ansible
+ansible --version
+````
+
 
 # SSH remote connection
 
 SSH basically means Secure Shell, it is both a software and a communication protocol that uses the protocol/port TCP/22 of your machines to communicate. It is called Secure because the communication is encrypted using your ssh key pair.
 
 Before trying any command, you should know that your private key requires restricted permissions to be used. Change the rights of your key:
-```agsl
-$ chmod 400 <path_to_your_key> 
+```shell
+chmod 400 <path_to_your_key> 
 ```
 Now your key can be used to ssh to your server. Go on and hit :
-```agsl
-$ ssh -i <path_to_your_key> centos@<your_server_domain_name>
+```shell
+ssh -i <path_to_your_key> centos@<your_server_domain_name>
 ```
 
-depuis le répertoire TP3:
-```agsl
+From the TP3 directory, you can run the following command to execute an Ansible playbook:
+
+```shell
 ansible-playbook -i ansible/inventories/setup.yml ansible/playbook.yml
 ```
-La commande ansible-playbook -i inventories/setup.yml playbook.yml est utilisée pour exécuter un playbook Ansible en spécifiant un inventaire et un fichier de playbook. Voici ce que chaque composant de la commande fait :
+Here's what each component of the command does:
 
-ansible-playbook: C'est la commande principale d'Ansible pour exécuter des playbooks, qui sont des fichiers YAML contenant des tâches et des rôles pour l'automatisation.
+ - ansible-playbook: This is the primary Ansible command used to execute playbooks. Playbooks are YAML files containing tasks and roles for automation.
 
--i inventories/setup.yml: Cela spécifie l'inventaire à utiliser pour cette exécution. L'inventaire est un fichier qui répertorie les hôtes (serveurs ou machines) sur lesquels vous souhaitez exécuter vos tâches Ansible. Dans cet exemple, inventories/setup.yml est le chemin vers le fichier d'inventaire.
+ - -i inventories/setup.yml: This specifies the inventory to be used for the execution. An inventory is a file that lists the hosts (servers or machines) on which you want to perform Ansible tasks. In this example, inventories/setup.yml is the path to the inventory file.
 
-playbook.yml: C'est le nom du fichier de playbook à exécuter. Le playbook contient les tâches et les rôles que vous souhaitez appliquer aux hôtes répertoriés dans l'inventaire.
+ - playbook.yml: This is the name of the playbook file to execute. The playbook contains the tasks and roles you want to apply to the hosts listed in the inventory.
 
+By using this role, you can keep your playbook clean and organized, with Docker installation tasks neatly encapsulated within the role. This allows for easy reuse of the role in other playbooks as needed.
 
-By using this role, you can keep your playbook clean and organized, and the Docker installation tasks are encapsulated within the role. You can reuse this role in other playbooks as needed.
-# QUESTIONS
+# Answers to Questions
 
-3-1 Document your inventory and base commands
+## 3-1 Document Your Inventory and Base Commands
 
-See the /inventories/setup.yml file, comments are explaining the file
+Please refer to the `/inventories/setup.yml` file for details. Comments within the file provide explanations.
 
-3-2 Document your playbook
+## 3-2 Document Your Playbook
 
-See the /inventories/docker_playbook.yml
+You can find the playbook in the `/inventories/docker_playbook.yml` file.
 
-In this Ansible playbook:
+You can execute it with the following command:
 
-to play it:
-```agsl
-$ ansible-playbook -i ansible/inventories/setup.yml ansible/docker_playbook.yml 
+```shell
+ansible-playbook -i ansible/inventories/setup.yml ansible/docker_playbook.yml
 ```
 
-name: Playbook to install Docker: This line provides a descriptive name for the playbook. It doesn't impact the execution of the playbook but is useful for identifying its purpose when running or reading it.
+ - `name`: Playbook to Install Docker: This line provides a descriptive name for the playbook. While it doesn't affect the playbook's execution, it's helpful for identifying its purpose during execution or review.
 
-hosts: all: This line specifies the hosts (machines) on which the tasks in the playbook will be executed. Here, "all" means the playbook runs on all hosts defined in the Ansible inventory. You can also specify a host group defined in your inventory, e.g., hosts: web_servers, to run it only on hosts in that group.
+ - `hosts: all`: This line specifies the hosts (machines) on which the playbook's tasks will run. Here, "all" means the playbook runs on all hosts defined in the Ansible inventory. Alternatively, you can specify a host group defined in your inventory, e.g., `hosts: web_servers`, to run it only on hosts in that group.
 
-roles: This section indicates which Ansible roles should be executed in this playbook. In this excerpt, there's a single role specified, which is the Docker role. Roles are pre-packaged sets of tasks and configurations that you can reuse in different playbooks. In this case, the Docker role is meant to install Docker on the hosts.
+ - `roles`: This section indicates which Ansible roles should be executed in this playbook. In this excerpt, there's a single role specified, which is the Docker role. Roles are pre-packaged sets of tasks and configurations that you can reuse in different playbooks. In this case, the Docker role is meant to install Docker on the hosts.
 
-Running this playbook will trigger the tasks from the Docker role on the specified hosts, resulting in the installation of Docker on those hosts. The actual tasks for installing Docker are defined in the tasks/main.yml file of the Docker role.
+Running this playbook will trigger the tasks from the Docker role on the specified hosts, resulting in the installation of Docker on those hosts. The actual tasks for installing Docker are defined in the `tasks/main.yml` file of the Docker role.
 
-Document your docker_container tasks configuration.
+## Document Your docker_container Tasks Configuration
 
-- name: Create a network: This is a user-friendly name or label for the task. It helps in identifying the task when viewing the output of an Ansible playbook run.
+ - `name: Create a Network`: This is a user-friendly label for the task, helping identify it when viewing Ansible playbook output.
 
-docker_network: This is an Ansible module specifically designed for managing Docker networks.
+ - `docker_network`: This is an Ansible module designed for Docker network management.
 
-name: app-network: This line specifies the name of the Docker network to be created. In this case, the network will be named "app-network."
+ - `name: app-network`:roles This line specifies the name of the Docker network to be created. In this case, the network is named "app-network."
 
-vars: This section allows you to set variables or environment options for the task. In this case, it specifies the Python interpreter to use.
+ - `vars`: This section allows you to set task-specific variables or environment options. Here, it specifies the Python interpreter to use.
 
-ansible_python_interpreter: /usr/bin/python3: The task is instructed to use the Python 3 interpreter located at /usr/bin/python3. This is useful when different Python versions are available on the system.
+ - `ansible_python_interpreter: /usr/bin/python3`: The task is instructed to use the Python 3 interpreter located at /usr/bin/python3. This is useful when multiple Python versions are available on the system.
 
-become: yes: This line indicates that the task should be executed with superuser or root privileges. This is necessary because creating Docker networks typically requires elevated permissions.
-true
+ - `become: yes`: This line indicates that the task should be executed with superuser or root privileges. This is necessary because creating Docker networks typically requires elevated permissions.
 
-name: This is the name you want to give to the Docker container you are creating. In this example, it's "httpd."
+ - `name`: This is the name you want to assign to the Docker container being created. In this example, it's "httpd."
 
-image: This specifies the Docker image that you want to use to create the container. In this case, it's "royerbantoine/tp-devops-httpd:1.0."
+ - `image`: This specifies the Docker image used to create the container. Here, it's "royerbantoine/tp-devops-httpd:1.0."
 
-recreate: When set to true, it indicates that the container should be recreated if it already exists. If set to false, the task will only create the container if it doesn't already exist.
+ - `recreate`: When set to true, it indicates that the container should be recreated if it already exists. If set to false, the task will only create the container if it doesn't already exist.
 
-pull: This option tells Ansible to pull the Docker image from the repository if it's not already present on the host.
+ - `pull`: This option tells Ansible to pull the Docker image from the repository if it's not already present on the host.
 
-ports: Here, you specify the port mapping. It maps port 80 of the host to port 80 of the container, allowing external access to the container's web server.
+ - `ports`: You specify the port mapping here. It maps port 80 of the host to port 80 of the container, enabling external access to the container's web server.
 
-networks: This option allows you to connect the container to one or more Docker networks. In this case, it connects the container to the "app-network."
+ - `networks`: This option allows you to connect the container to one or more Docker networks. In this case, it connects the container to the "app-network."
 
-These options collectively define how the Docker container will be created and run within your Docker environment. The docker_container module in Ansible uses these options to manage the Docker containers on your host.
+These options collectively define how the Docker container is created and run within your Docker environment. The `docker_container` module in Ansible utilizes these options to manage Docker containers on your host.
+

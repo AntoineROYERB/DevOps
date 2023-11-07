@@ -30,6 +30,10 @@ This repository contains the work completed during the DevOps course delivered b
 
     The second project delves into continuous deployment using Github Actions and demonstrates how it simplifies infrastructure management and automation.
 
+3. [TP3 - Ansible](TP3/README.md)
+
+   The third project introduces Ansible, a powerful automation tool, and delves into its applications for configuration management and orchestration in DevOps workflows.
+
 Each README.md contains specific details about the project objectives, technologies used, and results achieved.
 
 Feel free to explore the different projects to learn more about the DevOps practices and tools we studied as part of this course. DevOps is a continuously evolving discipline, and these projects illustrate how it can be applied to enhance collaboration and efficiency in software development.
