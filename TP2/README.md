@@ -33,19 +33,25 @@ The provided command runs Maven to validate and package the project. It then tri
 
 # Answers to questions
 
-2-1 What are testcontainers?
+### 2-1 What are testcontainers?
 
 They simply are java libraries that allow you to run a bunch of docker containers while testing. Here we use the postgresql container to attach to our application while testing.
 
-2-2 Document your Github Actions configurations.
+### 2-2 Document your Github Actions configurations.
 
 See .github/workflows/main.yml comments
 
-2-3 Why did we put needs: build-and-test-backend on this job?
+### 2-3 Document your quality gate configuration.
+
+See .github/workflows/main.yml comments
+
+# Miscellaneous Information
+
+### Why did we put needs: build-and-test-backend on this job?
 
 The provided GitHub Actions workflow defines a job named "build-and-push-docker-image" that is responsible for building and pushing Docker images for a backend application, a database, and an HTTP server.
 
-2-4 For what purpose do we need to push docker images?
+### For what purpose do we need to push docker images?
 
 Publishing Docker images is essential because it allows for:
 
@@ -57,9 +63,8 @@ Publishing Docker images is essential because it allows for:
 - Enhanced security.
 - Improved scalability.
 
-# Miscellaneous Information
 
-To commit without making any changes and rerun the tests:
+### To commit without making any changes and rerun the tests:
 
 ```
 $ git commit --amend --no-edit
