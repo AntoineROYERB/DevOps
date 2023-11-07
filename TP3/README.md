@@ -5,15 +5,12 @@ Up until now, we have primarily focused on preparing our applications for deploy
 
 This is where Ansible comes into play. Ansible is a powerful tool for managing servers, provisioning them, and deploying applications.
 
-It's worth noting that Ansible is not the only solution available in the market. Throughout your developer journey, you'll also encounter other tools like Chef, Puppet, and Terraform.
-
 ## Installation
 
 ```shell
 python3 -m pip install --user ansible
 ansible --version
 ````
-
 
 # SSH remote connection
 
