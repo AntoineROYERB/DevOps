@@ -1,34 +1,34 @@
 version: '3.7'
 
 services:
-    backend: 
+    backend:
         container_name: back
         build: ./BACK/simple-api-student-main
         networks:
-            - app-network  # Associe ce service au réseau "app-network"
+            - app-network  # Associate this service with the "app-network" network
         depends_on:
-            - database  # Attend que le service "database" soit prêt avant de démarrer
+            - database  # Wait for the "database" service to be ready before starting
 
     database:
         container_name: db
         build: .
         networks:
-            - app-network  # Associe ce service au réseau "app-network"
+            - app-network  # Associate this service with the "app-network" network
         volumes:
-            - db-volume:/var/lib/postgresql/data # Montre le volume "db-volume" dans le conteneur PostgreSQL
-            
+            - db-volume:/var/lib/postgresql/data  # Mount the "db-volume" volume into the PostgreSQL container
+
     httpd:
         container_name: front
         build: ./FRONT
         ports:
-            - "80:80"  # Fait correspondre le port 80 du conteneur HTTPD au port 80 de l'hôte
+            - "80:80"  # Map port 80 of the HTTPD container to port 80 of the host
         networks:
-            - app-network  # Associe ce service au réseau "app-network"
+            - app-network  # Associate this service with the "app-network" network
         depends_on:
-            - backend  # Attend que le service "backend" soit prêt avant de démarrer
+            - backend  # Wait for the "backend" service to be ready before starting
 
 volumes:
     db-volume:
 
 networks:
-    app-network:  # Définit un réseau nommé "app-network" pour la communication entre les services
+    app-network:  # Defines a network named "app-network" for communication between services
