@@ -39,11 +39,11 @@ They simply are java libraries that allow you to run a bunch of docker container
 
 ### 2-2 Document your Github Actions configurations.
 
-See .github/workflows/main.yml comments
+See `.github/workflows/main.yml `comments.
 
 ### 2-3 Document your quality gate configuration.
 
-See .github/workflows/main.yml comments
+See `.github/workflows/main.yml` comments.
 
 # Miscellaneous Information
 

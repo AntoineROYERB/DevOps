@@ -45,13 +45,13 @@ By using this role, you can keep your playbook clean and organized, with Docker 
 
 # Answers to Questions
 
-## 3-1 Document Your Inventory and Base Commands
+### 3-1 Document Your Inventory and Base Commands
 
-Please refer to the `/inventories/setup.yml` file for details. Comments within the file provide explanations.
+Please refer to the `TP3/ansible/inventories/setup.yml` file for details. Comments within the file provide explanations.
 
-## 3-2 Document Your Playbook
+### 3-2 Document Your Playbook
 
-You can find the playbook in the `/inventories/docker_playbook.yml` file.
+You can find the playbook in the `TP3/ansible/inventories/docker_playbook.yml` file.
 
 You can execute it with the following command:
 
@@ -59,15 +59,20 @@ You can execute it with the following command:
 ansible-playbook -i ansible/inventories/setup.yml ansible/docker_playbook.yml
 ```
 
- - `name`: Playbook to Install Docker: This line provides a descriptive name for the playbook. While it doesn't affect the playbook's execution, it's helpful for identifying its purpose during execution or review.
 
- - `hosts: all`: This line specifies the hosts (machines) on which the playbook's tasks will run. Here, "all" means the playbook runs on all hosts defined in the Ansible inventory. Alternatively, you can specify a host group defined in your inventory, e.g., `hosts: web_servers`, to run it only on hosts in that group.
+ - `hosts: all`: This line specifies the hosts (machines) on which the playbook's tasks will run. Here, "all" means the playbook runs on all hosts defined in the Ansible inventory.
+ - `Become: yes` option indicates that Ansible should escalate privileges to become the superuser.
 
- - `roles`: This section indicates which Ansible roles should be executed in this playbook. In this excerpt, there's a single role specified, which is the Docker role. Roles are pre-packaged sets of tasks and configurations that you can reuse in different playbooks. In this case, the Docker role is meant to install Docker on the hosts.
+ - `roles`: This section indicates which Ansible roles should be executed in this playbook: 
+   1. **docker**: Contains tasks for installing and configuring Docker.
+   2. **network**: Manages network configuration and setup.
+   3. **database**: Handles database setup and configuration.
+   4. **app**: Deploys and configures the application.
+   5. **proxy**: Configures a reverse proxy.
+   6. **front**: Manages the front-end web server setup.
 
-Running this playbook will trigger the tasks from the Docker role on the specified hosts, resulting in the installation of Docker on those hosts. The actual tasks for installing Docker are defined in the `tasks/main.yml` file of the Docker role.
 
-## Document Your docker_container Tasks Configuration
+### Document Your docker_container Tasks Configuration
 
  - `name: Create a Network`: This is a user-friendly label for the task, helping identify it when viewing Ansible playbook output.
 
@@ -93,5 +98,4 @@ Running this playbook will trigger the tasks from the Docker role on the specifi
 
  - `networks`: This option allows you to connect the container to one or more Docker networks. In this case, it connects the container to the "app-network."
 
-These options collectively define how the Docker container is created and run within your Docker environment. The `docker_container` module in Ansible utilizes these options to manage Docker containers on your host.
 
